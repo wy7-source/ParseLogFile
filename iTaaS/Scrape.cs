@@ -6,12 +6,12 @@ using System.Collections.Generic;
 
 namespace CandidateTesting.WythorFerreiraBazan.iTaaS
 {
-    class Scrape
+    public class Scrape
     {
         // GetLogFile is our method that download the MINHA CDN file.
         public MatchCollection GetLogFile(Uri uri)
         {
-            MatchCollection encontrados;
+            MatchCollection found;
             try
             {
                 WebClient wc = new WebClient();
@@ -27,8 +27,8 @@ namespace CandidateTesting.WythorFerreiraBazan.iTaaS
 
                 var rgx = new Regex(stb.ToString());
                 
-                encontrados = rgx.Matches(sourceLogFile);
-                if(encontrados.Count == 0)
+                found = rgx.Matches(sourceLogFile);
+                if(found.Count == 0)
                 {
                     throw new Exception(message: "Invalid MINHA CDN file format.");
                 }
@@ -37,7 +37,7 @@ namespace CandidateTesting.WythorFerreiraBazan.iTaaS
             {
                 throw e;
             }
-            return encontrados;
+            return found;
         }
         public void ConvertFile(MatchCollection collection, string localToSaveFile)
         {
