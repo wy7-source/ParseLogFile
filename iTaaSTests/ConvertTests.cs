@@ -7,48 +7,52 @@ namespace CandidateTesting.WythorFerreiraBazan.iTaaSTests
 {
     public class ConvertTests
     {
-        private Scrape scrape;
-        private Uri url;
+        private ScrapeService scrapeService;
+        private ConvertService convertService;
+        private string url;
+        private string filePath;
         
-        [SetUp]
-        public void Setup()
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
         {
-            scrape = new Scrape();
-            url = new Uri("https://s3.amazonaws.com/uux-itaas-static/minha-cdn-logs/input-01.txt");
+            scrapeService = new ScrapeService();
+            convertService = new ConvertService();
+            url = "https://s3.amazonaws.com/uux-itaas-static/minha-cdn-logs/input-01.txt";
+            filePath = ".output.txt";
         }
 
         [Test]
-        public void RegexMustWork()
+        // RegexMustWork is our test if the Regex work in right moment.
+        public void Convert_RegexMustWork()
         {
-            var aux = scrape.GetLogFile(url);
+            var aux = scrapeService.GetLogFile(url);
             Assert.IsTrue(aux.Count > 0);
         }
 
-        [Test]
-        public void MustTellInvalidFileFormat()
+        [TestCase("https://http.cat/409")]
+        // MustTellInvalidFileFormat is our test if wrong file format generated exception.
+        public void Convert_MustTellInvalidFileFormat(string url)
         {
-            Uri auxUrl = new Uri("https://http.cat/409");
-
-            var ex = Assert.Throws<Exception>(() => scrape.GetLogFile(auxUrl));
+            var ex = Assert.Throws<Exception>(() => scrapeService.GetLogFile(url));
             Assert.That(ex.Message, Is.EqualTo("Invalid MINHA CDN file format."));
         }
 
         [Test]
-        public void ShouldFileExistsOnEndOfProcess()
+        // ShouldFileExistsOnEndOfProcess is our test if after all process, file has been created.
+        public void Convert_ShouldFileExistsOnEndOfProcess()
         {
-            var log = scrape.GetLogFile(url);
-            string filePath = ".output.txt";
-            scrape.ConvertFile(log,filePath);
+            var log = scrapeService.GetLogFile(url);
+            convertService.ConvertFile(log,filePath);
 
             Assert.IsTrue(File.Exists(filePath));
         }
 
         [Test]
-        public void ShouldFileIsntEmpty()
+        // FileMustNotBeEmptyAfterConversion is our test if after file has been created, it isnt empty.
+        public void Convert_FileMustNotBeEmptyAfterConversion()
         {
-            string filePath = ".output.txt";
-            var log = scrape.GetLogFile(url);
-            scrape.ConvertFile(log,filePath);
+            var log = scrapeService.GetLogFile(url);
+            convertService.ConvertFile(log,filePath);
             string text = File.ReadAllText(filePath);
 
             Assert.IsFalse(String.IsNullOrEmpty(text));
