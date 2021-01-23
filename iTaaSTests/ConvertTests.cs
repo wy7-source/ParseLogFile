@@ -2,10 +2,11 @@ using System;
 using NUnit.Framework;
 using CandidateTesting.WythorFerreiraBazan.iTaaS;
 using System.IO;
+using CandidateTesting.WythorFerreiraBazan.iTaaSTests.Interfaces;
 
 namespace CandidateTesting.WythorFerreiraBazan.iTaaSTests
 {
-    public class ConvertTests
+    public class ConvertTests : IConvertTests
     {
         private ScrapeService scrapeService;
         private ConvertService convertService;
