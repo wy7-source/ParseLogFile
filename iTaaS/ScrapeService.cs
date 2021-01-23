@@ -2,10 +2,11 @@ using System;
 using System.Text;
 using System.Net;
 using System.Text.RegularExpressions;
+using CandidateTesting.WythorFerreiraBazan.iTaaS.Interfaces;
 
 namespace CandidateTesting.WythorFerreiraBazan.iTaaS
 {
-    public class ScrapeService
+    public class ScrapeService : IScrapeServices
     {
               
         // GetLogFile is our method that download the MINHA CDN file.

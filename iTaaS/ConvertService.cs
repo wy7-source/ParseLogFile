@@ -1,10 +1,11 @@
 using System;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using CandidateTesting.WythorFerreiraBazan.iTaaS.Interfaces;
 
 namespace CandidateTesting.WythorFerreiraBazan.iTaaS
 {
-    public class ConvertService
+    public class ConvertService : IConvertServices
     {
         // ConvertFile is our method that convert MINHA CDN file to Agora file.
         public void ConvertFile(MatchCollection collection, string localToSaveFile)

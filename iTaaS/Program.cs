@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using CandidateTesting.WythorFerreiraBazan.iTaaS.Interfaces;
 
 namespace CandidateTesting.WythorFerreiraBazan.iTaaS
 {
@@ -9,7 +10,7 @@ namespace CandidateTesting.WythorFerreiraBazan.iTaaS
         {
             try
             {
-                ScrapeService  _scrapeService = new ScrapeService();
+                ScrapeService _scrapeService = new ScrapeService();
                 ConvertService _convertService = new ConvertService();
               
                 MatchCollection log = _scrapeService.GetLogFile(args[0]);

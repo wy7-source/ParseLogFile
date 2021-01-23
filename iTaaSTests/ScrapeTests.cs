@@ -1,7 +1,6 @@
 using System;
 using NUnit.Framework;
 using CandidateTesting.WythorFerreiraBazan.iTaaS;
-using System.IO;
 
 namespace CandidateTesting.WythorFerreiraBazan.iTaaSTests
 {
@@ -21,7 +20,7 @@ namespace CandidateTesting.WythorFerreiraBazan.iTaaSTests
 
         [Test]
         // RegexMustWork is our test if the Regex work in right moment.
-        public void Convert_RegexMustWork()
+        public void Scrape_RegexMustWork()
         {
             var aux = scrapeService.GetLogFile(url);
             Assert.IsTrue(aux.Count > 0);
@@ -29,7 +28,7 @@ namespace CandidateTesting.WythorFerreiraBazan.iTaaSTests
 
         [TestCase("https://http.cat/409")]
         // MustTellInvalidFileFormat is our test if wrong file format generated exception.
-        public void Convert_MustTellInvalidFileFormat(string url)
+        public void Scrape_MustTellInvalidFileFormat(string url)
         {
             var ex = Assert.Throws<Exception>(() => scrapeService.GetLogFile(url));
             Assert.That(ex.Message, Is.EqualTo("Invalid MINHA CDN file format."));
