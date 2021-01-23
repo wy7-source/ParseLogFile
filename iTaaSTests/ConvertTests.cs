@@ -22,22 +22,6 @@ namespace CandidateTesting.WythorFerreiraBazan.iTaaSTests
         }
 
         [Test]
-        // RegexMustWork is our test if the Regex work in right moment.
-        public void Convert_RegexMustWork()
-        {
-            var aux = scrapeService.GetLogFile(url);
-            Assert.IsTrue(aux.Count > 0);
-        }
-
-        [TestCase("https://http.cat/409")]
-        // MustTellInvalidFileFormat is our test if wrong file format generated exception.
-        public void Convert_MustTellInvalidFileFormat(string url)
-        {
-            var ex = Assert.Throws<Exception>(() => scrapeService.GetLogFile(url));
-            Assert.That(ex.Message, Is.EqualTo("Invalid MINHA CDN file format."));
-        }
-
-        [Test]
         // ShouldFileExistsOnEndOfProcess is our test if after all process, file has been created.
         public void Convert_ShouldFileExistsOnEndOfProcess()
         {

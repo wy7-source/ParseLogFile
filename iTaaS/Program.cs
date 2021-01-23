@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace CandidateTesting.WythorFerreiraBazan.iTaaS
 {
@@ -11,7 +12,7 @@ namespace CandidateTesting.WythorFerreiraBazan.iTaaS
                 ScrapeService  _scrapeService = new ScrapeService();
                 ConvertService _convertService = new ConvertService();
               
-                var log = _scrapeService.GetLogFile(args[0]);
+                MatchCollection log = _scrapeService.GetLogFile(args[0]);
                 _convertService.ConvertFile(log,args[1]);
             }
             catch(IndexOutOfRangeException)
