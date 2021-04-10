@@ -1,6 +1,6 @@
 ### ParseLogFile Challenge
 
-Esse projeto foi um desafio da Agile Content que consiste em um microservice com nome de 'iTaaS'(bem micro mesmo) que converta um arquivo de log  de uma CDN  desse formato:
+Esse projeto foi um desafio da Agile Content que consiste em um worker com nome de 'iTaaS'(bem micro mesmo) que converta um arquivo de log  de uma CDN  desse formato:
 ```
 312|200|HIT|"GET /robots.txt HTTP/1.1"|100.2
 101|200|MISS|"POST /myImages HTTP/1.1"|319.4
